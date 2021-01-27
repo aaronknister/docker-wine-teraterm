@@ -1,9 +1,14 @@
 FROM scottyhardy/docker-wine:latest
+ADD https://ymu.dl.osdn.jp/ttssh2/72009/teraterm-4.105.zip /tmp/install/teraterm-4.105.zip
 ENV WINEPATH=/usr/share/wine/teraterm
+# Install x11vnc
+RUN apt-get update \
+    && DEBIAN_FRONTEND="noninteractive" apt-get install -y --no-install-recommends \
+        x11vnc \
+    && rm -rf /var/lib/apt/lists/*
 RUN mkdir /usr/share/wine/teraterm && \
-	mkdir /tmp/install && \
+	mkdir -p /tmp/install && \
 	cd /tmp/install && \
-	wget https://ymu.dl.osdn.jp/ttssh2/72009/teraterm-4.105.zip && \
 	unzip teraterm-4.105.zip && \
 	cd teraterm-4.105 && \
 	cp -a . /usr/share/wine/teraterm && \
