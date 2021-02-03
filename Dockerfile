@@ -1,4 +1,4 @@
-FROM scottyhardy/docker-wine@sha256:580121f5096660c0d699768be51109bdc4d69377794619bae5f3c6247ad1b72e
+FROM aaronknister/docker-wine:latest
 
 ENV WINEPATH=/usr/share/wine/teraterm
 
